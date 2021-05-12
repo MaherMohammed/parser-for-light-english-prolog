@@ -1,14 +1,13 @@
-s(s(NP,VP)) --> subject_phrase(NP), verb(VP).
-s(s(NP,VP)) --> subject_phrase(NP), verb_phrase(VP).
-s(s(NP,VP,A)) --> subject_phrase(NP), verb(VP), adjective(A).
-s(s(NP,VP,AD)) --> subject_phrase(NP), verb(VP), adverb(AD).
-s(s(NP,VP,SP)) --> subject_phrase(NP), verb(VP), subject_phrase(SP).
+s(s(NP,VP)) --> noun_phrase(NP), verb(VP).
+s(s(NP,VP)) --> noun_phrase(NP), verb_phrase(VP).
+s(s(NP,VP,A)) --> noun_phrase(NP), verb(VP), adjective(A).
+s(s(NP,VP,AD)) --> noun_phrase(NP), verb(VP), adverb(AD).
 
 
-subject_phrase(sp(D,N)) --> det(D), noun(N).
-subject_phrase(sp(D1,N1,C,D2,N2)) --> det(D1), noun(N1), conjunctive(C), det(D2), noun(N2).
-verb_phrase(vp(V,OP)) --> verb(V), object_phrase(OP).
-object_phrase(op(D,O)) --> det(D) ,noun(O).
+noun_phrase(sp(D,N)) --> det(D), noun(N).
+noun_phrase(sp(D1,N1,C,D2,N2)) --> det(D1), noun(N1), conjunctive(C), det(D2), noun(N2).
+verb_phrase(vp(V,NP)) --> verb(V), noun_phrase(NP).
+
 
 
 det(d(the)) --> [the].
