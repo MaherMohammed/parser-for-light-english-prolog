@@ -1,11 +1,13 @@
+s(s(NP,VP)) --> subject_phrase(NP), verb(VP).
 s(s(NP,VP)) --> subject_phrase(NP), verb_phrase(VP).
-s(s(NP,VP,OB)) --> subject_phrase(NP), verb(VP), object_phrase(OB).
 s(s(NP,VP,A)) --> subject_phrase(NP), verb(VP), adjective(A).
 s(s(NP,VP,AD)) --> subject_phrase(NP), verb(VP), adverb(AD).
 s(s(NP,VP,SP)) --> subject_phrase(NP), verb(VP), subject_phrase(SP).
 
+
 subject_phrase(sp(D,N)) --> det(D), noun(N).
-verb_phrase(vp(V)) --> verb(V).
+subject_phrase(sp(D1,N1,C,D2,N2)) --> det(D1), noun(N1), conjunctive(C), det(D2), noun(N2).
+verb_phrase(vp(V,OP)) --> verb(V), object_phrase(OP).
 object_phrase(op(D,O)) --> det(D) ,noun(O).
 
 
@@ -121,3 +123,6 @@ preposition(pre(from)) --> [from].
 
 interrogative(intr(who)) --> [who].
 interrogative(intr(what)) --> [what].
+
+
+conjunctive(conj(and)) --> [and].
