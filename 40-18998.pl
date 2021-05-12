@@ -1,3 +1,5 @@
+s(s(NP)) --> noun_phrase(NP).
+
 s(s(NP,VP)) --> noun_phrase(NP), verb_phrase(VP).
 s(s(NP,VP,C,NP2,VP2)) --> noun_phrase(NP), verb_phrase(VP), conjunctive(C), noun_phrase(NP2), verb_phrase(VP2).
 
@@ -6,12 +8,22 @@ s(s(NP,VP,C,NP2,VP2)) --> noun_phrase(NP), verb_phrase(VP), conjunctive(C), noun
 
 noun_phrase(np(D,N)) --> det(D), noun(N).
 noun_phrase(np(D,ADJ,N)) --> det(D), adjective(ADJ), noun(N).
-noun_phrase(np(D1,N1,C,D2,N2)) --> det(D1) ,noun(N1), conjunctive(C), det(D2) ,noun(N2).
+% noun_phrase(np(D1,N1,C,D2,N2)) --> det(D1) ,noun(N1), conjunctive(C), det(D2) ,noun(N2).
+% noun_phrase(np(D1,ADJ1,N1,C,D2,N2)) --> det(D1), adjective(ADJ1) ,noun(N1), conjunctive(C), det(D2) ,noun(N2).
+% noun_phrase(np(D1,ADJ1,N1,C,D2,ADJ2,N2)) --> det(D1), adjective(ADJ1) ,noun(N1), conjunctive(C), det(D2), adjective(ADJ2) ,noun(N2).
+% noun_phrase(np(D1,N1,C,D2,ADJ2,N2)) --> det(D1),noun(N1), conjunctive(C), det(D2), adjective(ADJ2) ,noun(N2).
+noun_phrase(np(NP1,C,NP2)) --> noun_phrase(NP1), conjunctive(C),noun_phrase(NP2).
 
 verb_phrase(vp(V,NP)) --> verb(V), noun_phrase(NP).
+verb_phrase(vp(V,NP,C,NP2)) --> verb(V), noun_phrase(NP), conjunctive(C), noun_phrase(NP2).
+verb_phrase(vp(V,NP,C,V2,NP2)) --> verb(V), noun_phrase(NP), conjunctive(C), verb(V2), noun_phrase(NP2).
+verb_phrase(vp(V,A,C,V2,NP)) --> verb(V), adjective(A), conjunctive(C), verb(V2),noun_phrase(NP).
 verb_phrase(vp(V,ADJ)) --> verb(V), adjective(ADJ).
 verb_phrase(vp(V,ADV)) --> verb(V), adverb(ADV).
 verb_phrase(vp(V)) --> verb(V).
+verb_phrase(vp(V,C,V2)) --> verb(V), conjunctive(C), verb(V2).
+% qeustion_phrase(qp())
+
 
 
 det(d(the)) --> [the].
@@ -53,7 +65,7 @@ verb(v(give)) --> [give].
 verb(v(belongs)) --> [belongs].
 verb(v(climb)) --> [climb].
 verb(v(climbed)) --> [climbed].
-verb(v(watched)) --> [watch].
+verb(v(watched)) --> [watched].
 verb(v(do)) --> [do].
 verb(v(did)) --> [did].
 verb(v(admire)) --> [admire].
@@ -69,6 +81,10 @@ verb(v(plays)) --> [plays].
 verb(v(is)) --> [is].
 verb(v(was)) --> [was].
 verb(v(are)) --> [are].
+verb(v(appreciated)) --> [appreciated].
+
+
+
 
 adjective(adj(young)) --> [young].
 adjective(adj(empty)) --> [empty].
@@ -77,7 +93,7 @@ adjective(adj(big)) --> [big].
 adjective(adj(old)) --> [old].
 adjective(adj(poor)) --> [poor].
 adjective(adj(white)) --> [white].
-adjective(adj(briliant)) --> [briliant].
+adjective(adj(brilliant)) --> [brilliant].
 adjective(adj(talented)) --> [talented].
 adjective(adj(bright)) --> [bright].
 adjective(adj(beautiful)) --> [beautiful].
@@ -129,3 +145,7 @@ interrogative(intr(what)) --> [what].
 
 
 conjunctive(conj(and)) --> [and].
+
+
+
+% s(Parse_tree,[some,brilliant,students,and,many,professors,watched,and,admired,talented,lecturers,and,appreciated,bright,scientists,and,researchers],[]).
