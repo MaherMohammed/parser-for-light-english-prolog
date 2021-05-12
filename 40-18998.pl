@@ -1,6 +1,13 @@
-sentence(s(NP,VP)) --> noun_phrase(NP), verb_phrase(VP).
-noun_phrase(np(D,N)) --> det(D), noun(N).
-verb_phrase(vp(V,NP)) --> verb(V), noun_phrase(NP).
+s(s(NP,VP)) --> subject_phrase(NP), verb_phrase(VP).
+s(s(NP,VP,OB)) --> subject_phrase(NP), verb(VP), object_phrase(OB).
+s(s(NP,VP,A)) --> subject_phrase(NP), verb(VP), adjective(A).
+s(s(NP,VP,AD)) --> subject_phrase(NP), verb(VP), adverb(AD).
+s(s(NP,VP,SP)) --> subject_phrase(NP), verb(VP), subject_phrase(SP).
+
+subject_phrase(sp(D,N)) --> det(D), noun(N).
+verb_phrase(vp(V)) --> verb(V).
+object_phrase(op(D,O)) --> det(D) ,noun(O).
+
 
 det(d(the)) --> [the].
 det(d(a)) --> [a].
@@ -23,6 +30,7 @@ noun(n(students)) --> [students].
 noun(n(professors)) --> [professors].
 noun(n(lecturers)) --> [lecturers].
 noun(n(scientists)) --> [scientists].
+noun(n(scientist)) --> [scientist].
 noun(n(researchers)) --> [researchers].
 noun(n(father)) --> [father].
 noun(n(mother)) --> [mother].
@@ -53,6 +61,9 @@ verb(v(walks)) --> [walks].
 verb(v(smells)) --> [smells].
 verb(v(gets)) --> [gets].
 verb(v(plays)) --> [plays].
+verb(v(is)) --> [is].
+verb(v(was)) --> [was].
+verb(v(are)) --> [are].
 
 adjective(adj(young)) --> [young].
 adjective(adj(empty)) --> [empty].
