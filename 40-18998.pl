@@ -5,26 +5,21 @@ s(s(NP,VP,C,NP2,VP2)) --> noun_phrase(NP), verb_phrase(VP), conjunctive(C), noun
 
 
 
-
+noun_phrase(np(N)) --> noun(N).
 noun_phrase(np(D,N)) --> det(D), noun(N).
 noun_phrase(np(D,AP,N)) --> det(D), adjective_phrase(AP), noun(N).
 noun_phrase(np(D,N,C,NP)) --> det(D), noun(N), conjunctive(C), noun_phrase(NP).
 noun_phrase(np(D,AP,N,C,NP)) --> det(D), adjective_phrase(AP), noun(N), conjunctive(C), noun_phrase(NP).
+noun_phrase(np(N,NP)) --> noun(N), noun_phrase(NP).
+noun_phrase(np(D,N,NP)) --> det(D), noun(N), noun_phrase(NP).
+noun_phrase(np(D,N,AP,NP)) --> det(D), adjective_phrase(AP), noun(N), noun_phrase(NP).
 
-
+verb_phrase(vp(V)) --> verb(V).
 verb_phrase(vp(V,NP)) --> verb(V), noun_phrase(NP).
+verb_phrase(vp(V,NP,NP2)) --> verb(V), noun_phrase(NP), noun_phrase(NP2).
 verb_phrase(vp(V,NP,PP)) --> verb(V), noun_phrase(NP), preposition_phrase(PP).
 verb_phrase(vp(V,C,VP)) --> verb(V), conjunctive(C), verb_phrase(VP).
 
-% verb_phrase(vp(V,NP)) --> verb(V), noun_phrase(NP).
-% verb_phrase(vp(V,NP,C,NP2)) --> verb(V), noun_phrase(NP), conjunctive(C), noun_phrase(NP2).
-% verb_phrase(vp(V,NP,C,V2,NP2)) --> verb(V), noun_phrase(NP), conjunctive(C), verb(V2), noun_phrase(NP2).
-% verb_phrase(vp(V,A,C,V2,NP)) --> verb(V), adjective(A), conjunctive(C), verb(V2),noun_phrase(NP).
-% verb_phrase(vp(V,ADJ)) --> verb(V), adjective(ADJ).
-% verb_phrase(vp(V,ADV)) --> verb(V), adverb(ADV).
-% verb_phrase(vp(V)) --> verb(V).
-% verb_phrase(vp(V,C,V2)) --> verb(V), conjunctive(C), verb(V2).
-% qeustion_phrase(qp())
 
 adjective_phrase(ap(A)) --> adjective(A).
 adjective_phrase(ap(A,AP)) --> adjective(A), adjective_phrase(AP).
@@ -35,6 +30,8 @@ preposition_phrase(pp(P,NP)) --> preposition(P), noun_phrase(NP).
 preposition_phrase(pp(P,NP,PP)) --> preposition(P), noun_phrase(NP), preposition_phrase(PP).
 preposition_phrase(pp(P,NP,C,PP)) --> preposition(P), noun_phrase(NP), conjunctive(C), preposition_phrase(PP).
 
+
+% adverb_phrase(advp()) --> .
 
 
 det(d(the)) --> [the].
@@ -73,6 +70,7 @@ verb(v(pushed)) --> [pushed].
 verb(v(store)) --> [store].
 verb(v(stored)) --> [stored].
 verb(v(give)) --> [give].
+verb(v(gave)) --> [gave].
 verb(v(belongs)) --> [belongs].
 verb(v(climb)) --> [climb].
 verb(v(climbed)) --> [climbed].
