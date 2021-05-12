@@ -12,20 +12,30 @@ noun_phrase(np(D,N,C,NP)) --> det(D), noun(N), conjunctive(C), noun_phrase(NP).
 noun_phrase(np(D,AP,N,C,NP)) --> det(D), adjective_phrase(AP), noun(N), conjunctive(C), noun_phrase(NP).
 
 
-
 verb_phrase(vp(V,NP)) --> verb(V), noun_phrase(NP).
-verb_phrase(vp(V,NP,C,NP2)) --> verb(V), noun_phrase(NP), conjunctive(C), noun_phrase(NP2).
-verb_phrase(vp(V,NP,C,V2,NP2)) --> verb(V), noun_phrase(NP), conjunctive(C), verb(V2), noun_phrase(NP2).
-verb_phrase(vp(V,A,C,V2,NP)) --> verb(V), adjective(A), conjunctive(C), verb(V2),noun_phrase(NP).
-verb_phrase(vp(V,ADJ)) --> verb(V), adjective(ADJ).
-verb_phrase(vp(V,ADV)) --> verb(V), adverb(ADV).
-verb_phrase(vp(V)) --> verb(V).
-verb_phrase(vp(V,C,V2)) --> verb(V), conjunctive(C), verb(V2).
+verb_phrase(vp(V,NP,PP)) --> verb(V), noun_phrase(NP), preposition_phrase(PP).
+verb_phrase(vp(V,C,VP)) --> verb(V), conjunctive(C), verb_phrase(VP).
+
+% verb_phrase(vp(V,NP)) --> verb(V), noun_phrase(NP).
+% verb_phrase(vp(V,NP,C,NP2)) --> verb(V), noun_phrase(NP), conjunctive(C), noun_phrase(NP2).
+% verb_phrase(vp(V,NP,C,V2,NP2)) --> verb(V), noun_phrase(NP), conjunctive(C), verb(V2), noun_phrase(NP2).
+% verb_phrase(vp(V,A,C,V2,NP)) --> verb(V), adjective(A), conjunctive(C), verb(V2),noun_phrase(NP).
+% verb_phrase(vp(V,ADJ)) --> verb(V), adjective(ADJ).
+% verb_phrase(vp(V,ADV)) --> verb(V), adverb(ADV).
+% verb_phrase(vp(V)) --> verb(V).
+% verb_phrase(vp(V,C,V2)) --> verb(V), conjunctive(C), verb(V2).
 % qeustion_phrase(qp())
 
 adjective_phrase(ap(A)) --> adjective(A).
 adjective_phrase(ap(A,AP)) --> adjective(A), adjective_phrase(AP).
 adjective_phrase(ap(A,C,AP)) --> adjective(A), conjunctive(C),adjective_phrase(AP).
+
+
+preposition_phrase(pp(P,NP)) --> preposition(P), noun_phrase(NP).
+preposition_phrase(pp(P,NP,PP)) --> preposition(P), noun_phrase(NP), preposition_phrase(PP).
+preposition_phrase(pp(P,NP,C,PP)) --> preposition(P), noun_phrase(NP), conjunctive(C), preposition_phrase(PP).
+
+
 
 det(d(the)) --> [the].
 det(d(a)) --> [a].
