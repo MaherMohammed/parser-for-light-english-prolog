@@ -1,11 +1,11 @@
-% s(s(NP)) --> noun_phrase(NP).
-
 s(sentence(NP,VP)) --> noun_phrase(NP), verb_phrase(VP).
 s(sentence(NP,VP,C,NP2,VP2)) --> noun_phrase(NP), verb_phrase(VP), conjunctive(C), noun_phrase(NP2), verb_phrase(VP2).
 s(sentence(VP)) --> verb_phrase(VP).
 
 s(sentence(ADV,SEN)) --> adverb_phrase(ADV), s(SEN).
 s(sentence(Q)) --> question_phrase(Q).
+% s(sentence(SEN,Q)) --> s(SEN) , question_phrase(Q).
+% s(sentence(Q,SEN)) --> question_phrase(Q), s(SEN).
 
 
 noun_phrase(np(N)) --> noun(N).
@@ -171,7 +171,3 @@ interrogative(intr(what)) --> [what].
 
 
 conjunctive(conj(and)) --> [and].
-
-
-
-% s(Parse_tree,[some,brilliant,students,and,many,professors,watched,and,admired,talented,lecturers,and,appreciated,bright,scientists,and,researchers],[]).
