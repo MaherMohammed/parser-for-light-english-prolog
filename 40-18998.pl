@@ -4,7 +4,8 @@ s(sentence(NP,VP)) --> noun_phrase(NP), verb_phrase(VP).
 s(sentence(NP,VP,C,NP2,VP2)) --> noun_phrase(NP), verb_phrase(VP), conjunctive(C), noun_phrase(NP2), verb_phrase(VP2).
 s(sentence(VP)) --> verb_phrase(VP).
 
-s(sentence(ADV,SEN)) --> adverb(ADV), s(SEN).
+s(sentence(ADV,SEN)) --> adverb_phrase(ADV), s(SEN).
+s(sentence(Q)) --> question_phrase(Q).
 
 
 noun_phrase(np(N)) --> noun(N).
@@ -17,10 +18,17 @@ noun_phrase(np(D,N,NP)) --> det(D), noun(N), noun_phrase(NP).
 noun_phrase(np(D,N,AP,NP)) --> det(D), adjective_phrase(AP), noun(N), noun_phrase(NP).
 
 verb_phrase(vp(V)) --> verb(V).
+verb_phrase(vp(V,PP)) --> verb(V), preposition_phrase(PP).
+verb_phrase(vp(AP)) --> adverb_phrase(AP).
+verb_phrase(vp(AP,PP)) --> adverb_phrase(AP), preposition_phrase(PP).
 verb_phrase(vp(V,NP)) --> verb(V), noun_phrase(NP).
+verb_phrase(vp(AP,NP)) --> adverb_phrase(AP), noun_phrase(NP).
 verb_phrase(vp(V,NP,NP2)) --> verb(V), noun_phrase(NP), noun_phrase(NP2).
+verb_phrase(vp(AP,NP,NP2)) --> adverb_phrase(AP), noun_phrase(NP), noun_phrase(NP2).
 verb_phrase(vp(V,NP,PP)) --> verb(V), noun_phrase(NP), preposition_phrase(PP).
+verb_phrase(vp(AP,NP,PP)) --> adverb_phrase(AP), noun_phrase(NP), preposition_phrase(PP).
 verb_phrase(vp(V,C,VP)) --> verb(V), conjunctive(C), verb_phrase(VP).
+verb_phrase(vp(AP,C,VP)) --> adverb_phrase(AP), conjunctive(C), verb_phrase(VP).
 
 
 adjective_phrase(ap(A)) --> adjective(A).
@@ -33,7 +41,14 @@ preposition_phrase(pp(P,NP,PP)) --> preposition(P), noun_phrase(NP), preposition
 preposition_phrase(pp(P,NP,C,PP)) --> preposition(P), noun_phrase(NP), conjunctive(C), preposition_phrase(PP).
 
 
-% adverb_phrase(advp()) --> .
+adverb_phrase(advp(ADV,V)) --> adverb(ADV), verb(V).
+adverb_phrase(advp(V,ADV)) --> verb(V), adverb(ADV).
+adverb_phrase(advp(ADV,ADVP)) --> adverb(ADV), adverb_phrase(ADVP).
+adverb_phrase(advp(ADV,C,ADVP)) --> adverb(ADV), conjunctive(C), adverb_phrase(ADVP).
+
+
+question_phrase(qp(I,V,NP,VP)) --> interrogative(I), verb(V), noun_phrase(NP), verb_phrase(VP).
+question_phrase(qp(I,VP)) --> interrogative(I), verb_phrase(VP).
 
 
 det(d(the)) --> [the].
