@@ -1,9 +1,14 @@
 s(sentence(NP,VP)) --> noun_phrase(NP), verb_phrase(VP).
-s(sentence(NP,VP,C,NP2,VP2)) --> noun_phrase(NP), verb_phrase(VP), conjunctive(C), noun_phrase(NP2), verb_phrase(VP2).
+s(sentence(NP,VP,C,SEN)) --> noun_phrase(NP), verb_phrase(VP), conjunctive(C), s(SEN).
+% s(sentence(NP,VP,SEN)) --> noun_phrase(NP), verb_phrase(VP), s(SEN).
 s(sentence(VP)) --> verb_phrase(VP).
 
 s(sentence(ADV,SEN)) --> adverb_phrase(ADV), s(SEN).
 s(sentence(Q)) --> question_phrase(Q).
+s(sentence(Q,C,SEN)) --> question_phrase(Q), conjunctive(C), s(SEN).
+% s(sentence(Q,SEN)) --> question_phrase(Q), s(SEN).
+
+
 % s(sentence(SEN,Q)) --> s(SEN) , question_phrase(Q).
 % s(sentence(Q,SEN)) --> question_phrase(Q), s(SEN).
 
@@ -18,6 +23,7 @@ noun_phrase(np(D,N,NP)) --> det(D), noun(N), noun_phrase(NP).
 noun_phrase(np(D,N,AP,NP)) --> det(D), adjective_phrase(AP), noun(N), noun_phrase(NP).
 
 verb_phrase(vp(V)) --> verb(V).
+verb_phrase(vp(V,ADJ)) --> verb(V), adjective_phrase(ADJ).
 verb_phrase(vp(V,PP)) --> verb(V), preposition_phrase(PP).
 verb_phrase(vp(AP)) --> adverb_phrase(AP).
 verb_phrase(vp(AP,PP)) --> adverb_phrase(AP), preposition_phrase(PP).
