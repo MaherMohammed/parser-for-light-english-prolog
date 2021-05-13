@@ -1,8 +1,10 @@
-s(s(NP)) --> noun_phrase(NP).
+% s(s(NP)) --> noun_phrase(NP).
 
-s(s(NP,VP)) --> noun_phrase(NP), verb_phrase(VP).
-s(s(NP,VP,C,NP2,VP2)) --> noun_phrase(NP), verb_phrase(VP), conjunctive(C), noun_phrase(NP2), verb_phrase(VP2).
+s(sentence(NP,VP)) --> noun_phrase(NP), verb_phrase(VP).
+s(sentence(NP,VP,C,NP2,VP2)) --> noun_phrase(NP), verb_phrase(VP), conjunctive(C), noun_phrase(NP2), verb_phrase(VP2).
+s(sentence(VP)) --> verb_phrase(VP).
 
+s(sentence(ADV,SEN)) --> adverb(ADV), s(SEN).
 
 
 noun_phrase(np(N)) --> noun(N).
